@@ -27,7 +27,7 @@
 */
 //
 // *********************************************************************
-#include "../includes/template-basic.h"    // system header files inclusion
+#include "includes/template-basic.h"    // system header files inclusion
 
 // *********************************************************************
                                         // set baudrate
@@ -328,12 +328,12 @@ void GetTemperature(void)
 	temperature >>= 8;
 	temperature -= 50;
 
-	//bufferCOM[0] = temperature.low8/10;
-    //bufferCOM[0] += '0';
-    //bufferCOM[1] = temperature.low8%10;
-    //bufferCOM[1] += '0';                  	// Display in ttC format
-    //bufferCOM[2] = 'C';
-	// SendDataUART(3);
+	bufferCOM[0] = temperature.low8/10;
+    bufferCOM[0] += '0';
+    bufferCOM[1] = temperature.low8%10;
+    bufferCOM[1] += '0';                  	// Display in ttC format
+    bufferCOM[2] = 'C';
+	 SendDataUART(3);
 
 }
 
