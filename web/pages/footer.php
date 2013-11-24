@@ -41,8 +41,16 @@
         </script>
         <script>
         $(document).ready(function(){
-            
+            setInterval(function(){getTemperature()}, 500);
         });
+
+        function getTemperature(){
+            $.get("script/temperature.php", function(data,status){
+              var fahrenheit = ((9/5) * data) + 32;
+              $('#celsius').html(data + '&deg;C');
+              $('#fahrenheit').html(fahrenheit + '&deg;F');
+            });
+        }
         </script>
     </body>
 
