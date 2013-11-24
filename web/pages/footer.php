@@ -41,12 +41,12 @@
         </script>
         <script>
         $(document).ready(function(){
-            setInterval(function(){getTemperature()}, 500);
+            setInterval(function(){getTemperature()}, 300);
         });
 
         function getTemperature(){
             $.get("script/temperature.php", function(data,status){
-              var fahrenheit = ((9/5) * data) + 32;
+              var fahrenheit = Math.round(((9/5) * data) + 32);
               $('#celsius').html(data + '&deg;C');
               $('#fahrenheit').html(fahrenheit + '&deg;F');
             });

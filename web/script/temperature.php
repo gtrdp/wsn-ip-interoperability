@@ -1,6 +1,6 @@
 <?php
 $command = 'python /root/iqrf.py';
 
-echo exec($command);
+echo substr(exec($command), 0, 2);
 
 ?>

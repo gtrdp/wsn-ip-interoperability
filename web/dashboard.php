@@ -20,7 +20,7 @@ if($relay2_status == 'H'){
 } else {
     $relay2_percentage  = 0;
     $relay2             = 'OFF';
-    $checked1           = '';
+    $checked2           = '';
 }
 ?>
 
