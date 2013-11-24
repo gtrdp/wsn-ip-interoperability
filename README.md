@@ -1,4 +1,30 @@
 # Pengembangan Gateway Berbasis Embedded Device untuk Interoperabilitas Jaringan Sensor Nirkabel dan Protokol Internet
+© Guntur DP, @gunturdputra, 2013
+
+##Isi
+* **arduino-relay**
+
+  Source code yang akan ditanamkan pada arduino untuk komunikasi zigbee dan menyala-mati-kan relay.
+ 
+  Ditulis dengan bahasa C (Arduino).
+
+* **iqrf**
+
+  Source code yang akan dicompile dan diupload pada IQRF sensor.
+  
+  Ditulis dengan bahasa C (IQRF).
+* **python**
+
+  Source code untuk membaca serial port, akan dieksekusi pada router TP-Link MR3020.
+  
+  Ditulis dengan bahasa *Python* dan Library *PySerial*.
+
+* **web**
+
+  Aplikasi berbasis web sebagai antarmuka dalam pengendalian sensor. Ditanamkan dan dijalankan juga pada router TP-LINK.
+  
+  Dikembangkan dengan menggunakan vinceg-bootstrap-admin, jquery, dan beberapa Library untuk animasi.
+
 
 ## Aplikasi
 * Arduino for Mac -> coding arduino
@@ -9,7 +35,8 @@
 * IQRF IDE v 2.08 for TR-5B
 
 ## Source Code di GitHub
-* TODO: bikin source di github
+
+https://github.com/gtrdp/wsn-ip-interoperability
 
 ---
 ## How-To
@@ -109,3 +136,26 @@
 ### Issue
 * Komunikasi dengan IQRF ke usbserial menggunakan kabel usb to serial prolific, bukan menggunakan kabel microUSB.
 * Jangan pakai development board, tapi pakai evaluation board. Karena development board bermasalah saat komunikasi UART.
+
+# License
+The MIT License (MIT)
+
+Copyright (c) 2013 - Guntur Dharma Putra
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
