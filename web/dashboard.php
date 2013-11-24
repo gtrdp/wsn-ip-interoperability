@@ -87,8 +87,8 @@ if($relay2_status == 'H'){
                         <div class="block-content collapse in">
                             <br><br>
                             <p class="text-right">
-                                <span style="font-size: 90px">27.0&deg;C</span><br><br><br>
-                                <span style="font-size: 90px">80.6&deg;F</span><br>
+                                <span id="celsius" style="font-size: 90px">27&deg;C</span><br><br><br>
+                                <span id="fahrenheit" style="font-size: 90px">80&deg;F</span><br>
                             </p>
                         </div>
                     </div>
