@@ -1,5 +1,5 @@
             <footer>
-                <p>Wireless Sensor Network and Internet Protocol Integration<br>
+                <p>Wireless Sensor Network and Internet Protocol Interoperability<br>
                 &copy; Guntur D Putra 2013</p>
             </footer>
         </div>
@@ -13,6 +13,11 @@
 
         <script src="assets/scripts.js"></script>
         <script src="assets/DT_bootstrap.js"></script>
+
+        <script type="text/javascript" src="vendors/chartjs/knockout-2.2.1.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/globalize.min.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
+
         <script>
         $(function() {
             // Easy pie charts
@@ -46,11 +51,60 @@
 
         function getTemperature(){
             $.get("script/temperature.php", function(data,status){
-              var fahrenheit = Math.round(((9/5) * data) + 32);
-              $('#celsius').html(data + '&deg;C');
-              $('#fahrenheit').html(fahrenheit + '&deg;F');
+                var gauge = $('#gaugeContainer').dxCircularGauge('instance');
+                if(data){
+                    gauge.needleValue(0, data);
+                    gauge.markerValue(0, data);
+                }
             });
         }
+        </script>
+
+        <script type="text/javascript">
+            $("#gaugeContainer").dxCircularGauge({
+                scale: {
+                    startValue: 0,
+                    endValue: 60,
+                    majorTick: {
+                        color: 'black',
+                        tickInterval : 10
+                    },
+                    minorTick: {
+                        visible: true,
+                        color: 'black',
+                        tickInterval : 1
+                    }
+                },
+                rangeContainer: {
+                    backgroundColor: 'none',
+                    ranges: [
+                        {
+                            startValue: 0,
+                            endValue: 20,
+                            color: 'blue'
+                        },
+                        {
+                            startValue: 20,
+                            endValue: 40,
+                            color: 'green'
+                        },
+                        {
+                            startValue: 40,
+                            endValue: 60,
+                            color: 'red'
+                        }
+                    ],
+                    offset: 5,
+                },
+                needles: [{ value: 24}],
+                markers: [{ value: 24 }]
+            });
+
+            function ganti(){
+                var gauge = $('#gaugeContainer').dxCircularGauge('instance');
+                gauge.needleValue(0, 23);
+                gauge.markerValue(0, 23);
+            }
         </script>
     </body>
 

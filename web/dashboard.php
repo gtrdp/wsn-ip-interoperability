@@ -85,11 +85,7 @@ if($relay2_status == 'H'){
                             <div class="muted pull-left">IQRF Temperature</div>
                         </div>
                         <div class="block-content collapse in">
-                            <br><br>
-                            <p class="text-right">
-                                <span id="celsius" style="font-size: 90px">27&deg;C</span><br><br><br>
-                                <span id="fahrenheit" style="font-size: 90px">80&deg;F</span><br>
-                            </p>
+                            <div id="gaugeContainer" style="height:180px"></div>
                         </div>
                     </div>
                     <!-- /block -->
@@ -101,6 +97,7 @@ if($relay2_status == 'H'){
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Next Relay Schedule</div>
+                            <div class="pull-right"><a href="schedule.php"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <table class="table table-striped">
@@ -146,9 +143,10 @@ if($relay2_status == 'H'){
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Registered Users</div>
+                            <div class="pull-right"><a href="user.php"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
-                            <table class="table table-striped">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
