@@ -7,7 +7,10 @@
             <a href="dashboard.php"><i class="icon-chevron-right"></i> Dashboard</a>
         </li>
         <li>
-            <a href="schedule.php"><i class="icon-chevron-right"></i> Schedule</a>
+            <a href="schedule.php"><i class="icon-chevron-right"></i> IQRF</a>
+        </li>
+        <li>
+            <a href="schedule.php"><i class="icon-chevron-right"></i> ZigBee Relay</a>
         </li>
         <li>
             <a href="mode.php"><i class="icon-chevron-right"></i> Mode</a>

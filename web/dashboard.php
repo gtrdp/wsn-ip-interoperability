@@ -51,6 +51,7 @@ if($relay2_status == 'H'){
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Relay Status</div>
+                            <div class="pull-right"><a href="#"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span6">
@@ -83,6 +84,7 @@ if($relay2_status == 'H'){
                     <div class="block">
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">IQRF Temperature</div>
+                            <div class="pull-right"><a href="#"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <div id="gaugeContainer" style="height:180px"></div>

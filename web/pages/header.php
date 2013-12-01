@@ -47,15 +47,28 @@
                                 <a href="dashboard.php">Dashboard</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Scheduling <b class="caret"></b>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">IQRF <b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="#">View Schedule</a>
+                                        <a href="#">View Devices</a>
                                     </li>
                                     <li>
-                                        <a href="#">Add New Schedule</a>
+                                        <a href="#">Add New Device</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">ZigBee Relay <b class="caret"></b>
+
+                                </a>
+                                <ul class="dropdown-menu" id="menu1">
+                                    <li>
+                                        <a href="#">View Devices</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Add New Device</a>
                                     </li>
                                 </ul>
                             </li>

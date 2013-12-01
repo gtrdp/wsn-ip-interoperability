@@ -1,4 +1,4 @@
-/ *********************************************************************
+/***********************************************************************
 //                             iHome - Sink
 // *********************************************************************
 //
@@ -9,15 +9,18 @@
 //
 // Author:
 //		Sigit B. Wibowo
+// Forked by:
+// 		Guntur DP (@gunturdputra)
 //
 // Description:
 //      This is for node attached to the Gateway a.k.a. Sink
 //
 // File:    iHome-Sink.c
-// Version: v1.00                                   Revision: 23/09/2012
+// Version: v1.10                                   Revision: 23/09/2012
 //
 // Revision history:
 //      v1.00: 23/09/2012  First release.
+//      v1.10: 27/11/2013  Forked.
 /*
 	Available Commands:
 	'b' Bond the specified node.

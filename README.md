@@ -25,6 +25,11 @@
   
   Dikembangkan dengan menggunakan vinceg-bootstrap-admin, jquery, dan beberapa Library untuk animasi.
 
+## To-do
+* Menambah fitur setting zigbee arduino relay di aplikasi web.
+* Menmbbah fitur bonding IQRF.
+* Schedule di remove, diganti dengan setting, add node, list node, 
+
 
 ## Aplikasi
 * Arduino for Mac -> coding arduino

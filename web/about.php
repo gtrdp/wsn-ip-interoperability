@@ -14,7 +14,7 @@
 	                </div>
 	                <div class="block-content collapse in">
 	                    <div class="span12">
-	                    	<h1>Wireless Sensor Network and Internet Protocol Integration</h1>
+	                    	<h1>Wireless Sensor Network and Internet Protocol Interoperability</h1>
 	                    	<small>&copy; Guntur D Putra 2013</small>
 	                    	<hr>
 	                    	<p>This application is intended for Wireless Sensor Network and Internet Protocol Integration</p>
