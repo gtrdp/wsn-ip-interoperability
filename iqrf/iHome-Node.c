@@ -21,14 +21,14 @@
 // Revision history:
 //      v1.00: 23/09/2012  First release.
 //      v1.10: 27/11/2013  Forked.
-/*
+//
 	Available Commands:
 	'b' Bond the specified node.
 	'u' Unbond the specified node.
 	'g' Get temperature from specified node.
 	'p' Turn ON/OFF port
 */
-#include "../includes/template-basic.h"
+#include "includes/template-basic.h"
 //#include "../includes/RFPGMTR-LITE.h"
 
 // *********************************************************************

@@ -23,9 +23,9 @@
 //      v1.10: 27/11/2013  Forked.
 /*
 	Available Commands:
-	'b' Bond the specified node.
-	'u' Unbond the specified node.
-	'g' Get temperature from specified node.
+	'b7' Bond the specified node.
+	'u7' Unbond the specified node.
+	'g7' Get temperature from specified node.
 	'p' Turn ON/OFF port
 */
 //
@@ -316,6 +316,7 @@ void GetTemperature(void)
 	non_NTW = 0;	
 	SendPacket();
 
+	/*
 	getTemperature();                     	// Temperature measurement
 	temperature.high8 = ADRESH & 0x03;  	// 10b result is stored
 	temperature.low8  = ADRESL;       		//   in ADRESH and ADRESL
@@ -330,13 +331,17 @@ void GetTemperature(void)
 	temperature *= 75;
 	temperature >>= 8;
 	temperature -= 50;
+	*/
 
-	bufferCOM[0] = temperature.low8/10;
-    bufferCOM[0] += '0';
-    bufferCOM[1] = temperature.low8%10;
-    bufferCOM[1] += '0';                  	// Display in ttC format
-    bufferCOM[2] = 'C';
-	 SendDataUART(3);
+	// Address
+	//uns8 alamat = bufferCOM[1];
+
+	//bufferCOM[0] = temperature.low8/10;
+    //bufferCOM[0] += '0';
+    //bufferCOM[1] = temperature.low8%10;
+    //bufferCOM[1] += '0';                  	// Display in ttC format
+    //bufferCOM[2] = alamat;
+	//SendDataUART(3);
 
 }
 
