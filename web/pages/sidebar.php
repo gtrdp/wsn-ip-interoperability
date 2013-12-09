@@ -7,16 +7,19 @@
             <a href="dashboard.php"><i class="icon-chevron-right"></i> Dashboard</a>
         </li>
         <li>
-            <a href="schedule.php"><i class="icon-chevron-right"></i> IQRF</a>
+            <a href="list.php"><i class="icon-chevron-right"></i> IQRF</a>
         </li>
         <li>
-            <a href="schedule.php"><i class="icon-chevron-right"></i> ZigBee Relay</a>
+            <a href="list.php"><i class="icon-chevron-right"></i> ZigBee Relay</a>
         </li>
         <li>
-            <a href="mode.php"><i class="icon-chevron-right"></i> Mode</a>
+            <a href="scheduling.php"><i class="icon-chevron-right"></i> Scheduling</a>
         </li>
         <li>
-            <a href="user.php"><i class="icon-chevron-right"></i> Users</a>
+            <a href="profile.php"><i class="icon-chevron-right"></i> Profile</a>
+        </li>
+        <li>
+            <a href="list.php"><i class="icon-chevron-right"></i> Users</a>
         </li>
         <li>
             <a href="about.php"><i class="icon-chevron-right"></i> About</a>

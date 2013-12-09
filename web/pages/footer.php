@@ -14,9 +14,11 @@
         <script src="assets/scripts.js"></script>
         <script src="assets/DT_bootstrap.js"></script>
 
-        <script type="text/javascript" src="vendors/chartjs/knockout-2.2.1.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/knockout-3.0.0.js"></script>
         <script type="text/javascript" src="vendors/chartjs/globalize.min.js"></script>
         <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
+
+        <script type="text/javascript" src="vendors/jquery.mousewheel.js"></script>
 
         <script>
         $(function() {
@@ -96,15 +98,86 @@
                     ],
                     offset: 5,
                 },
-                needles: [{ value: 24}],
-                markers: [{ value: 24 }]
+                subvalueIndicator: {
+                    type: 'textcloud',
+                    color: 'powderblue',
+                    text: {
+                        format: 'fixedPoint',
+                        precision: 1,
+                        font: {
+                            color: 'white'
+                        }
+                    }
+                },
+                value: 24,
+                subvalues: [24]
             });
 
+            $("#gaugeSetting").dxCircularGauge({
+                scale: {
+                    startValue: 0,
+                    endValue: 60,
+                    majorTick: {
+                        color: 'black',
+                        tickInterval : 10
+                    },
+                    minorTick: {
+                        visible: true,
+                        color: 'black',
+                        tickInterval : 1
+                    }
+                },
+                rangeContainer: {
+                    backgroundColor: 'none',
+                    ranges: [
+                        {
+                            startValue: 0,
+                            endValue: 20,
+                            color: 'blue'
+                        },
+                        {
+                            startValue: 20,
+                            endValue: 40,
+                            color: 'green'
+                        },
+                        {
+                            startValue: 40,
+                            endValue: 60,
+                            color: 'red'
+                        }
+                    ],
+                    offset: 5,
+                },
+                subvalueIndicator: {
+                    type: 'textcloud',
+                    color: 'powderblue',
+                    text: {
+                        format: 'fixedPoint',
+                        precision: 1,
+                        font: {
+                            color: 'white'
+                        }
+                    }
+                },
+                value: 24,
+                subvalues: [24]
+            });
+
+            $('#gaugeSetting').bind('mousewheel', function(event) {
+                var gauge = $('#gaugeSetting').dxCircularGauge('instance');
+                var value = gauge.value();
+                var subValue = gauge.subvalues();
+                
+                gauge.value(value + (event.deltaY/500));
+                gauge.subvalues([subValue[0] + (event.deltaY/500)]);
+                return false;
+            });
+            /*
             function ganti(){
                 var gauge = $('#gaugeContainer').dxCircularGauge('instance');
                 gauge.needleValue(0, 23);
                 gauge.markerValue(0, 23);
-            }
+            }*/
         </script>
     </body>
 

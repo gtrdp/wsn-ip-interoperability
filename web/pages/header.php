@@ -52,10 +52,10 @@
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="#">View Devices</a>
+                                        <a href="list.php">View Devices</a>
                                     </li>
                                     <li>
-                                        <a href="#">Add New Device</a>
+                                        <a href="add-device.php?device=iqrf">Add New Device</a>
                                     </li>
                                 </ul>
                             </li>
@@ -65,16 +65,24 @@
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="#">View Devices</a>
+                                        <a href="list.php">View Devices</a>
                                     </li>
                                     <li>
-                                        <a href="#">Add New Device</a>
+                                        <a href="add-device.php?device=xbee">Add New Device</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="mode.php" role="button" class="dropdown-toggle" data-toggle="dropdown">Mode
+                                <a href="mode.php" role="button" class="dropdown-toggle" data-toggle="dropdown">Profile <i class="caret"></i>
                                 </a>
+                                <ul class="dropdown-menu" id="menu1">
+                                    <li>
+                                        <a href="list.php">View/Edit Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="new-profile.php">Add New Profile</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
@@ -85,10 +93,10 @@
                                         <a tabindex="-1" href="profile.php">My Profile</a>
                                     </li>
                                     <li>
-                                        <a tabindex="-1" href="user.php">User List</a>
+                                        <a tabindex="-1" href="list.php">User List</a>
                                     </li>
                                     <li>
-                                        <a tabindex="-1" href="#">Add New User</a>
+                                        <a tabindex="-1" href="new-user.php">Add New User</a>
                                     </li>
                                 </ul>
                             </li>
