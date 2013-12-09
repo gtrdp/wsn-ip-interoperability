@@ -7,8 +7,13 @@
         <script src="vendors/jquery-1.9.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="bootstrap/js/bootstrap-switch.min.js"></script>
-        
-        <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>
+
+        <script src="vendors/bootstrap-datepicker.js"></script>
+        <link href="vendors/datepicker.css" rel="stylesheet" media="screen">
+
+        <script src="vendors/jquery.timepicker.js"></script>
+        <link href="vendors/jquery.timepicker.css" rel="stylesheet" media="screen">
+
         <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
 
         <script src="assets/scripts.js"></script>
@@ -19,9 +24,24 @@
         <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
 
         <script type="text/javascript" src="vendors/jquery.mousewheel.js"></script>
-
+        
         <script>
         $(function() {
+            $(".datepicker").datepicker();
+            $('#waktu').timepicker();
+
+            // Datepicker
+            $('#optionsCheckbox').change(function() {
+                if($(this).is(":checked")) {
+                    $('#enabledDatetime').show();
+                    $('#disabledDatetime').hide();
+                }else{
+                    $('#enabledDatetime').hide();
+                    $('#disabledDatetime').show();
+                }
+                
+            });
+
             // Easy pie charts
             $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
 
@@ -172,6 +192,7 @@
                 gauge.subvalues([subValue[0] + (event.deltaY/500)]);
                 return false;
             });
+
             /*
             function ganti(){
                 var gauge = $('#gaugeContainer').dxCircularGauge('instance');

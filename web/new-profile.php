@@ -91,13 +91,15 @@
                                   <label class="control-label">#IQRF Node</label>
                                   <div class="controls">
                                     <select id="selectError">
+                                   	  <option>0</option>
                                       <option>1</option>
                                       <option>2</option>
                                       <option>3</option>
                                       <option>4</option>
                                       <option>5</option>
                                     </select>
-                                    <p class="help-block">Your node address for this profile.</p>
+                                    <p class="help-block">Your node address for this profile.
+                                    Choose 0 if you do not want to use temperature sensor.</p>
                                   </div>
                                 </div>
 
@@ -112,6 +114,32 @@
                                       <option>5</option>
                                     </select>
                                     <p class="help-block">Your Xbee address for this profile.</p>
+                                  </div>
+                                </div>
+
+								<div class="control-group">
+                                  <label class="control-label" for="optionsCheckbox">Configure Datetime?</label>
+                                  <div class="controls">
+                                    <label class="uniform">
+                                      <input type="checkbox" id="optionsCheckbox">
+                                    </label>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                  <label class="control-label" for="date01">Date input</label>
+                                  <div class="controls">
+                                  	<div id="enabledDatetime" style="display:none;">
+                                  		<input type="text" class="datepicker" id="date01" value="02/16/12">
+                                    	<input id="waktu" type="text" value="1:00am">
+                                  	</div>
+                                  	<div id="disabledDatetime">
+                                  		<input class="disabled" type="text" value="Datetime is disabled." disabled>
+                                    	<input class="disabled" type="text" value="Datetime is disabled." disabled>
+                                  	</div>
+                                    <p class="help-block">
+                                    	Select the time this profile will run at.
+                                    </p>
                                   </div>
                                 </div>
 
