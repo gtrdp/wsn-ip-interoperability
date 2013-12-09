@@ -1,4 +1,10 @@
-<?php include('pages/header.php'); ?>
+<?php
+session_start();
+if (!isset($_SESSION['username'])) header('Location: index.php');
+
+$page = 'user';
+include('pages/header.php');
+?>
 
 <div class="container-fluid">
     <div class="row-fluid">

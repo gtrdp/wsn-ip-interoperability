@@ -29,7 +29,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
                             <li class="dropdown">
-                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Guntur D Putra <i class="caret"></i>
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><?php echo $_SESSION['full_name']; ?><i class="caret"></i>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -37,54 +37,54 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a tabindex="-1" href="index.php">Logout</a>
+                                        <a tabindex="-1" href="script/logout.php">Logout</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="nav">
-                            <li class="active">
+                            <li <?php if($page == 'dashboard') echo "class=\"active\"";?>>
                                 <a href="dashboard.php">Dashboard</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown <?php if($page == 'iqrf') echo "active";?>">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">IQRF <b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="list.php">View Devices</a>
+                                        <a href="list.php?list=iqrf">View Devices</a>
                                     </li>
                                     <li>
                                         <a href="add-device.php?device=iqrf">Add New Device</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">ZigBee Relay <b class="caret"></b>
+                            <li class="dropdown <?php if($page == 'xbee') echo "active";?>">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">XBee Relay <b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="list.php">View Devices</a>
+                                        <a href="list.php?list=xbee">View Devices</a>
                                     </li>
                                     <li>
                                         <a href="add-device.php?device=xbee">Add New Device</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown <?php if($page == 'profile') echo "active";?>">
                                 <a href="mode.php" role="button" class="dropdown-toggle" data-toggle="dropdown">Profile <i class="caret"></i>
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="list.php">View/Edit Profile</a>
+                                        <a href="list.php?list=profile">View/Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="new-profile.php">Add New Profile</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown <?php if($page == 'user') echo "active";?>">
                                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
 
                                 </a>
@@ -93,14 +93,14 @@
                                         <a tabindex="-1" href="profile.php">My Profile</a>
                                     </li>
                                     <li>
-                                        <a tabindex="-1" href="list.php">User List</a>
+                                        <a tabindex="-1" href="list.php?list=user">User List</a>
                                     </li>
                                     <li>
                                         <a tabindex="-1" href="new-user.php">Add New User</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="">
+                            <li <?php if($page == 'about') echo "class=\"active\"";?>>
                                 <a href="about.php">About</a>
                             </li>
                         </ul>

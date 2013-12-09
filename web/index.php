@@ -1,3 +1,30 @@
+<?php
+session_start();
+
+if(isset($_POST['username']) && $_POST['username'] != '') {
+  include('script/db.php');
+
+  $username = mysql_escape_string($_POST['username']);
+  $password = md5(mysql_escape_string($_POST['password']));
+  $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+  $result = mysql_query($query);
+
+  if(mysql_num_rows($result) > 0) {
+    $data = mysql_fetch_array($result);
+    $_SESSION['full_name']  = $data['full_name'];
+    $_SESSION['username']   = $data['username'];
+    header('Location: dashboard.php');
+  }
+  else
+    $error = '<div class="alert alert-error">
+                    <button class="close" data-dismiss="alert">×</button>
+                    <strong>Error!</strong> Username or password doesn\'t match.
+                  </div>';
+} elseif(isset($_SESSION['username'])) {
+  header('Location: dashboard.php');
+}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,13 +42,14 @@
   <body id="login">
     <div class="container">
 
-      <form class="form-signin" action="dashboard.php">
+      <form class="form-signin" action="index.php" method="post">
         <h2 class="form-signin-heading">Please Log in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
-        <label class="checkbox">
+        <?php echo $error;?>
+        <input type="text" name="username" class="input-block-level" placeholder="Username">
+        <input type="password" name="password" class="input-block-level" placeholder="Password">
+        <!--<label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
-        </label>
+        </label>-->
         <button class="btn btn-large btn-primary" type="submit">Log in</button>
       </form>
 

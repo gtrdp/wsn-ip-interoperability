@@ -1,4 +1,7 @@
 <?php
+session_start();
+if (!isset($_SESSION['username'])) header('Location: index.php');
+
 //check the relay status
 $relay1_status = exec('python /root/xbee.py status 1');
 $relay2_status = exec('python /root/xbee.py status 2');
@@ -22,6 +25,9 @@ if($relay2_status == 'H'){
     $relay2             = 'OFF';
     $checked2           = '';
 }
+
+// page description
+$page = 'dashboard';
 ?>
 
 <?php include('pages/header.php'); ?> 
