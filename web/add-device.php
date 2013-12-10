@@ -3,6 +3,13 @@ session_start();
 if (!isset($_SESSION['username'])) header('Location: index.php');
 
 $page = $_GET['device'];
+
+if(isset($_GET['success']) && $_GET['success'] == 'true') 
+	$message = '<div class="alert alert-success">
+							<button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Success</h4>
+                        	You have successfully added the device.</div>';
+
 include('pages/header.php');
 ?>
 
@@ -11,6 +18,7 @@ include('pages/header.php');
         <?php include('pages/sidebar.php'); ?>
         
         <div class="span9" id="content">
+        <?php echo $message; ?>
         	<div class="row-fluid">
             	<div class="navbar">
                 	<div class="navbar-inner">
@@ -75,21 +83,23 @@ include('pages/header.php');
 								ERROR!
 							<?php endif; ?>
 
-	                         <form class="form-horizontal">
+	                         <form class="form-horizontal" onsubmit="return startSpin();">
 	                            <legend>Add New <?php echo strtoupper($_GET['device']);?> Device</legend>
 	                        <?php if($_GET['device'] == 'xbee'):?>
+	                        	<input id="deviceType" type="hidden" value="xbee">
 	                            <div class="control-group">
 	                              <label class="control-label">ATMY</label>
 	                              <div class="controls">
-	                                <input class="input-xlarge" type="text">
+	                                <input name="address" id="address" class="input-xlarge" type="text">
 	                                <p class="help-block">Your device address.</p>
 	                              </div>
 	                            </div>
 	                        <?php elseif($_GET['device'] == 'iqrf'):?>
+	                        	<input id="deviceType" type="hidden" value="iqrf">
 	                        	<div class="control-group">
 	                              <label class="control-label">Node Address</label>
 	                              <div class="controls">
-	                                <input class="input-xlarge" type="text">
+	                                <input name="address" id="address" class="input-xlarge" type="text">
 	                                <p class="help-block">Your device address.</p>
 	                              </div>
 	                            </div>
@@ -97,7 +107,7 @@ include('pages/header.php');
 								ERROR!
 							<?php endif; ?>
 	                            <div class="form-actions">
-	                              <button type="submit" class="btn btn-primary">Add This Device</button>
+	                              <button id="buttonSubmit" class="btn btn-primary">Add This Device</button>
 	                              <button type="reset" class="btn">Cancel</button>
 	                            </div>
 	                        </form>

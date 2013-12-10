@@ -24,6 +24,8 @@
         <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
 
         <script type="text/javascript" src="vendors/jquery.mousewheel.js"></script>
+
+        <script type="text/javascript" src="vendors/spin.min.js"></script>
         
         <script>
         $(function() {
@@ -75,8 +77,8 @@
             $.get("script/temperature.php", function(data,status){
                 var gauge = $('#gaugeContainer').dxCircularGauge('instance');
                 if(data){
-                    gauge.needleValue(0, data);
-                    gauge.markerValue(0, data);
+                    gauge.value(data);
+                    gauge.subvalues([data]);
                 }
             });
         }
@@ -199,6 +201,46 @@
                 gauge.needleValue(0, 23);
                 gauge.markerValue(0, 23);
             }*/
+        </script>
+
+        <script type="text/javascript">
+            var opts = {
+              lines: 13, // The number of lines to draw
+              length: 20, // The length of each line
+              width: 8, // The line thickness
+              radius: 30, // The radius of the inner circle
+              corners: 1, // Corner roundness (0..1)
+              rotate: 0, // The rotation offset
+              direction: 1, // 1: clockwise, -1: counterclockwise
+              color: '#000', // #rgb or #rrggbb or array of colors
+              speed: 1, // Rounds per second
+              trail: 60, // Afterglow percentage
+              shadow: false, // Whether to render a shadow
+              hwaccel: false, // Whether to use hardware acceleration
+              className: 'spinner', // The CSS class to assign to the spinner
+              zIndex: 2e9, // The z-index (defaults to 2000000000)
+              top: 'auto', // Top position relative to parent in px
+              left: 'auto' // Left position relative to parent in px
+            };
+            var target = document.getElementById('content');
+            var spinner = new Spinner(opts);
+            //spinner.spin(target);
+
+            function startSpin() {
+                spinner.spin(target);
+
+                var device  = document.getElementById('deviceType').value;
+                var address = document.getElementById('address').value;
+                alert('Push the button on specified node NOW!');
+                $.get("script/add-device.php?device=" + device + "&address=" + address, function(data,status){
+                    if(data){
+                        alert(data);
+                        spinner.stop();
+                        location.href = 'add-device.php?device=' + device;
+                    }
+                });
+                return false;
+            }
         </script>
     </body>
 
