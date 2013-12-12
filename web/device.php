@@ -10,8 +10,39 @@ include('pages/header.php');
 include('script/db.php');
 
 // Check if delete device
-if(isset($_POST['delete'])){
+if(isset($_POST['delete']) && $_POST['delete'] != '') {
+    $id = $_POST['delete'];
+    $device = $_POST['device'];
+    $page = $device;
 
+    if($device == 'iqrf') {
+        if(mysql_query("DELETE FROM iqrf_device WHERE node_address = $id"))
+            $message = '<div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Success</h4>
+                          You have successfully deleted the device.</div>';
+        else
+            $message = '<div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Error</h4>
+                          '.mysql_error().'</div>';
+    } elseif ($device == 'xbee') {
+        if(mysql_query("DELETE FROM xbee_device WHERE atmy = $id"))
+            $message = '<div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Success</h4>
+                          You have successfully deleted the device.</div>';
+        else
+            $message = '<div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Error</h4>
+                          '.mysql_error().'</div>';
+    } else {
+        $message = '<div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4>Error</h4>
+                          Missing device attribute.</div>';
+    }
 }
 
 $data = array();
@@ -85,6 +116,7 @@ if($page == 'iqrf') {
                     <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">No Device Installed</div>
+                                <div class="pull-right"><a href="add-device.php?device=xbee"> <span class="badge badge-success">Add Device</span></a></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -98,7 +130,7 @@ if($page == 'iqrf') {
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Relay Status of ATMY <?php echo $value['atmy']; ?></div>
-                                <div class="pull-right"><span atmy="<?php echo $value['atmy']; ?>" class="badge badge-error">Delete this device</span></div>
+                                <div class="pull-right"><span onclick="deleteXbee(<?php echo $value['atmy']; ?>)" class="badge badge-important">Delete this device</span></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span6">
@@ -141,6 +173,7 @@ if($page == 'iqrf') {
                     <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">No Device Bonded</div>
+                                <div class="pull-right"><a href="add-device.php?device=iqrf"> <span class="badge badge-success">Add Device</span></a></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -155,7 +188,7 @@ if($page == 'iqrf') {
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">IQRF Temperature Node <?php echo $value['node_address']; ?></div>
-                                <div class="pull-right"><span node="<?php echo $value['node_address']; ?>" class="badge badge-error">Delete this device</span></div>
+                                <div class="pull-right"><span onclick="deleteIQRF(<?php echo $value['node_address']; ?>)"class="badge badge-important">Delete this device</span></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div node="<?php echo $value['node_address']; ?>" class="temperatureGauge" style="height:180px"></div>
@@ -174,9 +207,53 @@ if($page == 'iqrf') {
 
         </div>
 <script type="text/javascript">
-    function confirmation(userid) {
-        if (confirm('Are you sure you want to delete this user?')) {
-            location.href = 'delete-user.php?id=' + userid;
+    function deleteXbee(atmy) {
+        if (confirm('Are you sure you want to delete this device?')) {
+            //location.href = 'delete-user.php?id=' + userid;
+            
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+
+            var field = document.createElement("input");
+            field.setAttribute("type", "hidden");
+            field.setAttribute("name", "delete");
+            field.setAttribute("value", atmy);
+            form.appendChild(field);
+
+            var field2 = document.createElement("input");
+            field2.setAttribute("type", "hidden");
+            field2.setAttribute("name", "device");
+            field2.setAttribute("value", "xbee");
+            form.appendChild(field2);
+
+            document.body.appendChild(form);
+            form.submit();
+        } else {
+            // Do nothing!
+        }
+    }
+
+    function deleteIQRF(node) {
+        if (confirm('Are you sure you want to delete this device?')) {
+            //location.href = 'delete-user.php?id=' + userid;
+            
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+
+            var field = document.createElement("input");
+            field.setAttribute("type", "hidden");
+            field.setAttribute("name", "delete");
+            field.setAttribute("value", node);
+            form.appendChild(field);
+
+            var field2 = document.createElement("input");
+            field2.setAttribute("type", "hidden");
+            field2.setAttribute("name", "device");
+            field2.setAttribute("value", "iqrf");
+            form.appendChild(field2);
+
+            document.body.appendChild(form);
+            form.submit();
         } else {
             // Do nothing!
         }

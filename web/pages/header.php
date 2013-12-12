@@ -84,6 +84,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php if($_SESSION['superuser'] == 1): ?>
                             <li class="dropdown <?php if($page == 'user') echo "active";?>">
                                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Users <i class="caret"></i>
 
@@ -100,6 +101,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php endif; ?>
                             <li <?php if($page == 'about') echo "class=\"active\"";?>>
                                 <a href="about.php">About</a>
                             </li>

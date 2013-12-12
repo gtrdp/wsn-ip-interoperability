@@ -86,6 +86,7 @@ $page = 'dashboard';
                         <?php if($iqrf_no_device): ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Relay Status</div>
+                            <div class="pull-right"><a href="add-device.php?device=xbee"> <span class="badge badge-success">Add Device</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <p>Sorry, no device installed.</p>
@@ -95,7 +96,7 @@ $page = 'dashboard';
                         <?php else: ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Relay Status of ATMY <?php echo $atmy; ?></div>
-                            <div class="pull-right"><a href="device.php?device=xbee"> <span class="badge badge-warning">View More</span></a></div>
+                            <div class="pull-right"><a href="device.php?device=xbee"> <span class="badge badge-success">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span6">
@@ -131,6 +132,7 @@ $page = 'dashboard';
                         <?php if($xbee_no_device): ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">IQRF Temperature</div>
+                            <div class="pull-right"><a href="add-device.php?device=iqrf"> <span class="badge badge-success">Add Device</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <p>Sorry, no iqrf node bonded.</p>
@@ -144,95 +146,6 @@ $page = 'dashboard';
                             <div node="<?php echo $node_address; ?>" class="temperatureGauge" style="height:180px"></div>
                         </div>
                         <?php endif; ?>
-                    </div>
-                    <!-- /block -->
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="span6">
-                    <!-- block -->
-                    <div class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div class="muted pull-left">Next Relay Schedule</div>
-                            <div class="pull-right"><a href="schedule.php"> <span class="badge badge-warning">View More</span></a></div>
-                        </div>
-                        <div class="block-content collapse in">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Timestap</th>
-                                        <th>Relay ID</th>
-                                        <th>Action</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Oct 26 20:44:29</td>
-                                        <td>1</td>
-                                        <td>ON</td>
-                                        <td>OK</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Oct 27 20:47:29</td>
-                                        <td>2</td>
-                                        <td>ON</td>
-                                        <td>NULL</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Oct 28 20:44:29</td>
-                                        <td>1</td>
-                                        <td>OFF</td>
-                                        <td>NULL</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- /block -->
-                </div>
-                <div class="span6">
-                    <!-- block -->
-                    <div class="block">
-                        <div class="navbar navbar-inner block-header">
-                            <div class="muted pull-left">Registered Users</div>
-                            <div class="pull-right"><a href="user.php"> <span class="badge badge-warning">View More</span></a></div>
-                        </div>
-                        <div class="block-content collapse in">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Username</th>
-                                        <th colspan="2">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>gtrdp</td>
-                                        <td><button class="btn btn-mini" type="button">Edit</button></td>
-                                        <td><button class="btn btn-mini btn-danger" type="button">Delete</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td><button class="btn btn-mini" type="button">Edit</button></td>
-                                        <td><button class="btn btn-mini btn-danger" type="button">Delete</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Vincent</td>
-                                        <td><button class="btn btn-mini" type="button">Edit</button></td>
-                                        <td><button class="btn btn-mini btn-danger" type="button">Delete</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                     <!-- /block -->
                 </div>

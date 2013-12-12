@@ -11,8 +11,10 @@ if(isset($_POST['username']) && $_POST['username'] != '') {
 
   if(mysql_num_rows($result) > 0) {
     $data = mysql_fetch_array($result);
+    $_SESSION['id']  = $data['id'];
     $_SESSION['full_name']  = $data['full_name'];
     $_SESSION['username']   = $data['username'];
+    $_SESSION['superuser']  = $data['superuser'];
     header('Location: dashboard.php');
   }
   else

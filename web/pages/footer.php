@@ -302,10 +302,10 @@
                 subvalues: [24]
             });
         </script>  
+        <?php endif; ?>
 
 
-
-        <?php elseif ($page == 'iqrf' || $page == 'xbee'): ?>
+        <?php if ($page == 'iqrf' || $page == 'xbee'): ?>
         <script type="text/javascript" src="vendors/spin.min.js"></script>
 
         <script type="text/javascript">

@@ -13,11 +13,13 @@
             <a href="device.php?device=xbee"><i class="icon-chevron-right"></i> XBee Relay</a>
         </li>
         <li <?php if($page == 'profile') echo 'class="active"';?>>
-            <a href="profile.php"><i class="icon-chevron-right"></i> Profile</a>
+            <a href="list.php?list=profile"><i class="icon-chevron-right"></i> Profile</a>
         </li>
+        <?php if($_SESSION['superuser'] == 1): ?>
         <li <?php if($page == 'user') echo 'class="active"';?>>
             <a href="list.php?list=user"><i class="icon-chevron-right"></i> Users</a>
         </li>
+        <?php endif; ?>
         <li <?php if($page == 'about') echo 'class="active"';?>>
             <a href="about.php"><i class="icon-chevron-right"></i> About</a>
         </li>

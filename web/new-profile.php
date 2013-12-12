@@ -35,7 +35,7 @@ include('pages/header.php');
                             <div class="muted pull-left">IQRF Temperature</div>
                         </div>
                         <div class="block-content collapse in">
-                            <div id="gaugeSetting" style="height:180px;width:250px;"></div>
+                            <div class="temperatureGauge" style="height:180px;width:250px;"></div>
                         </div>
                         <p style="margin:5px;">
                         	<small>
