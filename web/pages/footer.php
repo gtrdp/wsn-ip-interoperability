@@ -130,50 +130,35 @@
         
         <script>
         $(function() {
-            $(".datepicker").datepicker();
-            $('#waktu').timepicker();
-
-            // Datepicker
-            $('#optionsCheckbox').change(function() {
-                if($(this).is(":checked")) {
-                    $('#enabledDatetime').show();
-                    $('#disabledDatetime').hide();
-                }else{
-                    $('#enabledDatetime').hide();
-                    $('#disabledDatetime').show();
-                }
-                
-            });
-
             // Easy pie charts
             $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
 
             //boostrap-switch
-            $('.button-relay-1').on('switch-change', function () {
-                var value = $('.chart-relay-1').attr('data-percent');
-                $('.status-relay-1').text(value == 100 ? 'OFF':'ON');
-                $('.chart-relay-1').data('easyPieChart').update(100 - value);
-                $('.chart-relay-1').attr('data-percent', 100 - value);
+            $('.button-relay').on('switch-change', function () {
+                var value = $(this).parent().siblings('.chart-relay').attr('data-percent');
 
-                var status = $('#relay1').is(':checked')? 'on': 'off';
-                $.get('script/action.php?status=' + status + '&relay=1');
-            });
-            $('.button-relay-2').on('switch-change', function () {
-                var value = $('.chart-relay-2').attr('data-percent');
-                $('.status-relay-2').text(value == 100 ? 'OFF':'ON');
-                $('.chart-relay-2').data('easyPieChart').update(100 - value);
-                $('.chart-relay-2').attr('data-percent', 100 - value);
+                // Find status
+                $(this).parent().siblings('.chart-relay').find('.status-relay').text(value == 100 ? 'OFF':'ON');
+                // Update the pie chart
+                $(this).parent().siblings('.chart-relay').data('easyPieChart').update(100 - value);
+                // Update the attribute
+                $(this).parent().siblings('.chart-relay').attr('data-percent', 100 - value);
 
-                var status = $('#relay2').is(':checked')? 'on': 'off';
-                $.get('script/action.php?status=' + status + '&relay=2');
+                // Get the atmy and relay ID
+                var atmy = $(this).attr('atmy');
+                var relayID = $(this).attr('relay-id');
+
+                //Ajax to change the XBee's relay
+                var status = $(this).find('.relay-checkbox').is(':checked')? 'on': 'off';
+                console.log(status);
+                $.get('script/action.php?status=' + status + '&relay=' + relayID + '&atmy=' + atmy);
             });
         });
         </script>
         
 
         <script type="text/javascript">
-
-            $("#gaugeSetting").dxCircularGauge({
+            $(".temperatureGauge").dxCircularGauge({
                 scale: {
                     startValue: 0,
                     endValue: 60,
@@ -223,8 +208,8 @@
                 subvalues: [24]
             });
 
-            $('#gaugeSetting').bind('mousewheel', function(event) {
-                var gauge = $('#gaugeSetting').dxCircularGauge('instance');
+            $('.temperatureGauge').bind('mousewheel', function(event) {
+                var gauge = $(this).dxCircularGauge('instance');
                 var value = gauge.value();
                 var subValue = gauge.subvalues();
                 
@@ -232,8 +217,93 @@
                 gauge.subvalues([subValue[0] + (event.deltaY/500)]);
                 return false;
             });
-
         </script>
+
+        <?php elseif ($page == 'xbee'): ?>
+        <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
+
+        <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
+
+            //boostrap-switch
+            $('.button-relay').on('switch-change', function () {
+                var value = $(this).parent().siblings('.chart-relay').attr('data-percent');
+
+                // Find status
+                $(this).parent().siblings('.chart-relay').find('.status-relay').text(value == 100 ? 'OFF':'ON');
+                // Update the pie chart
+                $(this).parent().siblings('.chart-relay').data('easyPieChart').update(100 - value);
+                // Update the attribute
+                $(this).parent().siblings('.chart-relay').attr('data-percent', 100 - value);
+
+                // Get the atmy and relay ID
+                var atmy = $(this).attr('atmy');
+                var relayID = $(this).attr('relay-id');
+
+                //Ajax to change the XBee's relay
+                var status = $(this).find('.relay-checkbox').is(':checked')? 'on': 'off';
+                console.log(status);
+                $.get('script/action.php?status=' + status + '&relay=' + relayID + '&atmy=' + atmy);
+            });
+        });
+        </script>
+
+        <?php elseif ($page == 'iqrf'): ?>
+        <script type="text/javascript">
+            $(".temperatureGauge").dxCircularGauge({
+                scale: {
+                    startValue: 0,
+                    endValue: 60,
+                    majorTick: {
+                        color: 'black',
+                        tickInterval : 10
+                    },
+                    minorTick: {
+                        visible: true,
+                        color: 'black',
+                        tickInterval : 1
+                    }
+                },
+                rangeContainer: {
+                    backgroundColor: 'none',
+                    ranges: [
+                        {
+                            startValue: 0,
+                            endValue: 20,
+                            color: 'blue'
+                        },
+                        {
+                            startValue: 20,
+                            endValue: 40,
+                            color: 'green'
+                        },
+                        {
+                            startValue: 40,
+                            endValue: 60,
+                            color: 'red'
+                        }
+                    ],
+                    offset: 5,
+                },
+                subvalueIndicator: {
+                    type: 'textcloud',
+                    color: 'powderblue',
+                    text: {
+                        format: 'fixedPoint',
+                        precision: 1,
+                        font: {
+                            color: 'white'
+                        }
+                    }
+                },
+                value: 24,
+                subvalues: [24]
+            });
+        </script>  
+
+
 
         <?php elseif ($page == 'iqrf' || $page == 'xbee'): ?>
         <script type="text/javascript" src="vendors/spin.min.js"></script>

@@ -86,15 +86,16 @@ $page = 'dashboard';
                         <?php if($iqrf_no_device): ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Relay Status</div>
-                            <div class="pull-right"><a href="#"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <p>Sorry, no device installed.</p>
                         </div>
+
+
                         <?php else: ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">Relay Status of ATMY <?php echo $atmy; ?></div>
-                            <div class="pull-right"><a href="iqrf.php"> <span class="badge badge-warning">View More</span></a></div>
+                            <div class="pull-right"><a href="device.php?device=xbee"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span6">
@@ -103,7 +104,7 @@ $page = 'dashboard';
                                 </div>
                                 <div class="chart-bottom-heading">
                                     <span class="label label-success">Relay 1</span><br><br>
-                                    <div atmy="2" relay-id="1" class="make-switch switch-small button-relay" data-on="success" data-off="warning">
+                                    <div atmy="<?php echo $atmy; ?>" relay-id="1" class="make-switch switch-small button-relay" data-on="success" data-off="warning">
                                         <input class="relay-checkbox" type="checkbox" <?php echo $checked1; ?>>
                                     </div>
                                 </div>
@@ -115,7 +116,7 @@ $page = 'dashboard';
                                 </div>
                                 <div class="chart-bottom-heading">
                                     <span class="label label-info">Relay 2</span><br><br>
-                                    <div atmy="2" relay-id="2" class="make-switch switch-small button-relay" data-on="success" data-off="warning">
+                                    <div atmy="<?php echo $atmy; ?>" relay-id="2" class="make-switch switch-small button-relay" data-on="success" data-off="warning">
                                         <input class="relay-checkbox" type="checkbox" <?php echo $checked2; ?>>
                                     </div>
                                 </div>
@@ -130,7 +131,6 @@ $page = 'dashboard';
                         <?php if($xbee_no_device): ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">IQRF Temperature</div>
-                            <div class="pull-right"><a href="xbee.php"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
                             <p>Sorry, no iqrf node bonded.</p>
@@ -138,10 +138,10 @@ $page = 'dashboard';
                         <?php else: ?>
                         <div class="navbar navbar-inner block-header">
                             <div class="muted pull-left">IQRF Temperature</div>
-                            <div class="pull-right"><a href="#"> <span class="badge badge-warning">View More</span></a></div>
+                            <div class="pull-right"><a href="device.php?device=iqrf"> <span class="badge badge-warning">View More</span></a></div>
                         </div>
                         <div class="block-content collapse in">
-                            <div class="temperatureGauge" style="height:180px"></div>
+                            <div node="<?php echo $node_address; ?>" class="temperatureGauge" style="height:180px"></div>
                         </div>
                         <?php endif; ?>
                     </div>

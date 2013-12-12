@@ -52,7 +52,7 @@
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="list.php?list=iqrf">View Devices</a>
+                                        <a href="device.php?device=iqrf">View Devices</a>
                                     </li>
                                     <li>
                                         <a href="add-device.php?device=iqrf">Add New Device</a>
@@ -65,7 +65,7 @@
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="list.php?list=xbee">View Devices</a>
+                                        <a href="device.php?device=xbee">View Devices</a>
                                     </li>
                                     <li>
                                         <a href="add-device.php?device=xbee">Add New Device</a>

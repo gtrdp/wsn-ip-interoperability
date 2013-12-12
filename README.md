@@ -35,6 +35,10 @@
 	* link download masukkan link github
 * Jadikan dummy web sekarang menjadi benar2 berfungsi.
 * Buat dokumentasi tentang bagaimana implementasi aplikasi ini dari nol.
+* Buat Skripsi
+	* SDLC apa yang digunakan?
+	* Saat testing menggunakan sshfs agar mudah dalam testing.
+	* Usecase.
 
 
 ## Aplikasi
