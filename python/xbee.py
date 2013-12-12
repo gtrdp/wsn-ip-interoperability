@@ -27,11 +27,11 @@ else:
 	# Start ATCOMMAND with +++
 	xbee.write('+++')
 	if xbee.read(10) == 'OK'
-		# If OK, change the address using ATMY
-		xbee.write('ATMY %d' % atmy)
+		# If OK, change the address using ATDL
+		xbee.write('ATDL ' + atmy + '\r\n')
 		if xbee.read(10) == 'OK'
 			# if OK, write the setting to the memory using ATWR
-			xbee.write('ATWR')
+			xbee.write('ATWR' + '\r\n')
 			if xbee.read(10) == 'OK'
 				# If OK, start the communication to the desired device
 				if mode == "on" :

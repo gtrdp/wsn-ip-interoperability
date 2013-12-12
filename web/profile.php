@@ -82,7 +82,7 @@ include('pages/header.php');
 	                            <div class="control-group">
 	                              <label class="control-label">Username</label>
 	                              <div class="controls">
-	                                <span class="input-xlarge uneditable-input">gtrdp</span>
+	                                <span class="input-xlarge uneditable-input"><?php echo $_SESSION['username']; ?></span>
 	                              </div>
 	                            </div>
 	                            <div class="control-group">

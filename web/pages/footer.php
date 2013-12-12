@@ -7,85 +7,63 @@
         <script src="vendors/jquery-1.9.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="bootstrap/js/bootstrap-switch.min.js"></script>
-
-        <script src="vendors/bootstrap-datepicker.js"></script>
-        <link href="vendors/datepicker.css" rel="stylesheet" media="screen">
-
-        <script src="vendors/jquery.timepicker.js"></script>
-        <link href="vendors/jquery.timepicker.css" rel="stylesheet" media="screen">
-
-        <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
-
         <script src="assets/scripts.js"></script>
-        <script src="assets/DT_bootstrap.js"></script>
 
+        <?php if ($page == 'dashboard'): ?>
+        <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
         <script type="text/javascript" src="vendors/chartjs/knockout-3.0.0.js"></script>
         <script type="text/javascript" src="vendors/chartjs/globalize.min.js"></script>
         <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
-
-        <script type="text/javascript" src="vendors/jquery.mousewheel.js"></script>
-
-        <script type="text/javascript" src="vendors/spin.min.js"></script>
-        
+    
         <script>
         $(function() {
-            $(".datepicker").datepicker();
-            $('#waktu').timepicker();
-
-            // Datepicker
-            $('#optionsCheckbox').change(function() {
-                if($(this).is(":checked")) {
-                    $('#enabledDatetime').show();
-                    $('#disabledDatetime').hide();
-                }else{
-                    $('#enabledDatetime').hide();
-                    $('#disabledDatetime').show();
-                }
-                
-            });
-
             // Easy pie charts
             $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
 
             //boostrap-switch
-            $('.button-relay-1').on('switch-change', function () {
-                var value = $('.chart-relay-1').attr('data-percent');
-                $('.status-relay-1').text(value == 100 ? 'OFF':'ON');
-                $('.chart-relay-1').data('easyPieChart').update(100 - value);
-                $('.chart-relay-1').attr('data-percent', 100 - value);
+            $('.button-relay').on('switch-change', function () {
+                var value = $(this).parent().siblings('.chart-relay').attr('data-percent');
 
-                var status = $('#relay1').is(':checked')? 'on': 'off';
-                $.get('script/action.php?status=' + status + '&relay=1');
-            });
-            $('.button-relay-2').on('switch-change', function () {
-                var value = $('.chart-relay-2').attr('data-percent');
-                $('.status-relay-2').text(value == 100 ? 'OFF':'ON');
-                $('.chart-relay-2').data('easyPieChart').update(100 - value);
-                $('.chart-relay-2').attr('data-percent', 100 - value);
+                // Find status
+                $(this).parent().siblings('.chart-relay').find('.status-relay').text(value == 100 ? 'OFF':'ON');
+                // Update the pie chart
+                $(this).parent().siblings('.chart-relay').data('easyPieChart').update(100 - value);
+                // Update the attribute
+                $(this).parent().siblings('.chart-relay').attr('data-percent', 100 - value);
 
-                var status = $('#relay2').is(':checked')? 'on': 'off';
-                $.get('script/action.php?status=' + status + '&relay=2');
+                // Get the atmy and relay ID
+                var atmy = $(this).attr('atmy');
+                var relayID = $(this).attr('relay-id');
+
+                //Ajax to change the XBee's relay
+                var status = $(this).find('.relay-checkbox').is(':checked')? 'on': 'off';
+                console.log(status);
+                $.get('script/action.php?status=' + status + '&relay=' + relayID + '&atmy=' + atmy);
             });
         });
         </script>
         <script>
+        // Script for keep updating every 300 milisecond
         $(document).ready(function(){
             setInterval(function(){getTemperature()}, 300);
         });
 
         function getTemperature(){
-            $.get("script/temperature.php", function(data,status){
-                var gauge = $('#gaugeContainer').dxCircularGauge('instance');
-                if(data){
-                    gauge.value(data);
-                    gauge.subvalues([data]);
-                }
+            $('.temperatureGauge').each(function(){
+                var theObject = $(this);
+                $.get("script/temperature.php", function(data,status){
+                    var gauge = theObject.dxCircularGauge('instance');
+                    if(data){
+                        gauge.value(data);
+                        gauge.subvalues([data]);
+                    }
+                });
             });
         }
         </script>
 
         <script type="text/javascript">
-            $("#gaugeContainer").dxCircularGauge({
+            $(".temperatureGauge").dxCircularGauge({
                 scale: {
                     startValue: 0,
                     endValue: 60,
@@ -134,6 +112,66 @@
                 value: 24,
                 subvalues: [24]
             });
+        </script>  
+
+        <?php elseif ($page == 'profile'): ?>
+        <script src="vendors/easypiechart/jquery.easy-pie-chart.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/knockout-3.0.0.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/globalize.min.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
+        
+        <script src="vendors/bootstrap-datepicker.js"></script>
+        <link href="vendors/datepicker.css" rel="stylesheet" media="screen">
+
+        <script src="vendors/jquery.timepicker.js"></script>
+        <link href="vendors/jquery.timepicker.css" rel="stylesheet" media="screen">
+
+        <script type="text/javascript" src="vendors/jquery.mousewheel.js"></script>
+        
+        <script>
+        $(function() {
+            $(".datepicker").datepicker();
+            $('#waktu').timepicker();
+
+            // Datepicker
+            $('#optionsCheckbox').change(function() {
+                if($(this).is(":checked")) {
+                    $('#enabledDatetime').show();
+                    $('#disabledDatetime').hide();
+                }else{
+                    $('#enabledDatetime').hide();
+                    $('#disabledDatetime').show();
+                }
+                
+            });
+
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
+
+            //boostrap-switch
+            $('.button-relay-1').on('switch-change', function () {
+                var value = $('.chart-relay-1').attr('data-percent');
+                $('.status-relay-1').text(value == 100 ? 'OFF':'ON');
+                $('.chart-relay-1').data('easyPieChart').update(100 - value);
+                $('.chart-relay-1').attr('data-percent', 100 - value);
+
+                var status = $('#relay1').is(':checked')? 'on': 'off';
+                $.get('script/action.php?status=' + status + '&relay=1');
+            });
+            $('.button-relay-2').on('switch-change', function () {
+                var value = $('.chart-relay-2').attr('data-percent');
+                $('.status-relay-2').text(value == 100 ? 'OFF':'ON');
+                $('.chart-relay-2').data('easyPieChart').update(100 - value);
+                $('.chart-relay-2').attr('data-percent', 100 - value);
+
+                var status = $('#relay2').is(':checked')? 'on': 'off';
+                $.get('script/action.php?status=' + status + '&relay=2');
+            });
+        });
+        </script>
+        
+
+        <script type="text/javascript">
 
             $("#gaugeSetting").dxCircularGauge({
                 scale: {
@@ -195,13 +233,10 @@
                 return false;
             });
 
-            /*
-            function ganti(){
-                var gauge = $('#gaugeContainer').dxCircularGauge('instance');
-                gauge.needleValue(0, 23);
-                gauge.markerValue(0, 23);
-            }*/
         </script>
+
+        <?php elseif ($page == 'iqrf' || $page == 'xbee'): ?>
+        <script type="text/javascript" src="vendors/spin.min.js"></script>
 
         <script type="text/javascript">
             var opts = {
@@ -231,7 +266,8 @@
 
                 var device  = document.getElementById('deviceType').value;
                 var address = document.getElementById('address').value;
-                alert('Push the button on specified node NOW!');
+                if(device == 'iqrf')
+                    alert('Push the button on specified node NOW!');
                 $.get("script/add-device.php?device=" + device + "&address=" + address, function(data,status){
                     if(data){
                         alert(data);
@@ -242,6 +278,8 @@
                 return false;
             }
         </script>
+
+        <?php endif;?>
     </body>
 
 </html>
