@@ -26,20 +26,13 @@
   Dikembangkan dengan menggunakan vinceg-bootstrap-admin, jquery, dan beberapa Library untuk animasi.
 
 ## To-do
-* Menambah menu zigbee : add/remove relay dan list relay
-	* Ada peringatan: Pastikan device anda sudah terkonfigurasi dengan blabla
-	* Beri contoh AT Command juga
-	* Beri contoh link tutorial
-* Menambah menu iqrf : add/remove node dan list relay
-	* Ada peringatan: Pastikan device anda sudah terinstall program iHome
-	* link download masukkan link github
-* Jadikan dummy web sekarang menjadi benar2 berfungsi.
 * Buat dokumentasi tentang bagaimana implementasi aplikasi ini dari nol.
 * **Buat Skripsi**
 	* SDLC apa yang digunakan?
 	* Saat testing menggunakan sshfs agar mudah dalam testing.
-	* Usecase.
-	* Sitemap
+	* Usecase, sitemap, flowchart.
+	* Konfigurasi router yang digunakan.
+	* Problem and solution, pyserial.
 
 
 ## Aplikasi
