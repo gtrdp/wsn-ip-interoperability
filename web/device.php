@@ -16,11 +16,16 @@ if(isset($_POST['delete']) && $_POST['delete'] != '') {
     $page = $device;
 
     if($device == 'iqrf') {
-        if(mysql_query("DELETE FROM iqrf_device WHERE node_address = $id"))
+        if(mysql_query("DELETE FROM iqrf_device WHERE node_address = $id")){
             $message = '<div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">x</button>
                             <h4>Success</h4>
                           You have successfully deleted the device.</div>';
+
+            // Ubbond the node
+            $command = 'python /root/iqrf.py u'.$id;
+            exec($command);
+        }
         else
             $message = '<div class="alert alert-error">
               <button type="button" class="close" data-dismiss="alert">x</button>
@@ -70,14 +75,14 @@ if($page == 'iqrf') {
         $no_device = false;
 
         while($foo = mysql_fetch_object($result)) {
-            $bar = array('id' => $foo->id, 'atmy' => $foo->node_address);
+            $bar = array('id' => $foo->id, 'atmy' => $foo->atmy);
             array_push($data, $bar);
         }
-
+        
         //check every xbee relay status
         foreach ($data as $key => $value) {
-            $relay1_status[$key] = exec('python /root/xbee.py status '. $value['atmy'] .' 1');
-            $relay2_status[$key] = exec('python /root/xbee.py status '. $value['atmy'] .'2');
+            $relay1_status[$key] = substr(exec('python /root/xbee.py status '. $value['atmy'] .' 1'), -1);
+            $relay2_status[$key] = substr(exec('python /root/xbee.py status '. $value['atmy'] .' 2'), -1);
 
             if($relay1_status[$key] == 'H'){
                 $relay1_percentage[$key]    = 100;
@@ -110,7 +115,10 @@ if($page == 'iqrf') {
         <?php include('pages/sidebar.php'); ?>
 		
 		<div class="span9" id="content">
+        <?php echo $message; ?>
 			<div class="row-fluid">
+
+
             <?php if($page == 'xbee'): ?>
                 <?php if($no_device): ?>
                     <div class="block">
@@ -130,7 +138,7 @@ if($page == 'iqrf') {
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">Relay Status of ATMY <?php echo $value['atmy']; ?></div>
-                                <div class="pull-right"><span onclick="deleteXbee(<?php echo $value['atmy']; ?>)" class="badge badge-important">Delete this device</span></div>
+                                <div class="pull-right"><span onclick="deleteXbee(<?php echo $value['atmy']; ?>)" style="cursor:pointer;" class="badge badge-important">Delete this device</span></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span6">
@@ -188,7 +196,7 @@ if($page == 'iqrf') {
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left">IQRF Temperature Node <?php echo $value['node_address']; ?></div>
-                                <div class="pull-right"><span onclick="deleteIQRF(<?php echo $value['node_address']; ?>)"class="badge badge-important">Delete this device</span></div>
+                                <div class="pull-right"><span onclick="deleteIQRF(<?php echo $value['node_address']; ?>)" style="cursor:pointer;" class="badge badge-important">Delete this device</span></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div node="<?php echo $value['node_address']; ?>" class="temperatureGauge" style="height:180px"></div>

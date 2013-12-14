@@ -92,7 +92,12 @@ include('pages/header.php');
 		                <div class="block-content collapse in">
 	                         <form class="form-horizontal">
 	                            <legend>Profile Setting</legend>
-	                            
+	                          <div class="control-group">
+                              <label class="control-label">Profile Name</label>
+                              <div class="controls">
+                                <input name="profile_name" class="input-xlarge focused" type="text">
+                              </div>
+                            </div>
 	                        	<div class="control-group">
                                   <label class="control-label">#IQRF Node</label>
                                   <div class="controls">

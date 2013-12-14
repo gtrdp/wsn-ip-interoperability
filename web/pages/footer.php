@@ -18,7 +18,7 @@
         <script>
         $(function() {
             // Easy pie charts
-            $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
+            $('.chart').easyPieChart({animate: 3000, barColor: '#006600'});
 
             //boostrap-switch
             $('.button-relay').on('switch-change', function () {
@@ -51,7 +51,9 @@
         function getTemperature(){
             $('.temperatureGauge').each(function(){
                 var theObject = $(this);
-                $.get("script/temperature.php", function(data,status){
+                var nodeAddress = $(this).attr('node');
+
+                $.get("script/temperature.php?node=" + nodeAddress, function(data,status){
                     var gauge = theObject.dxCircularGauge('instance');
                     if(data){
                         gauge.value(data);
@@ -109,8 +111,8 @@
                         }
                     }
                 },
-                value: 24,
-                subvalues: [24]
+                value: 27,
+                subvalues: [27]
             });
         </script>  
 
@@ -149,9 +151,9 @@
                 var relayID = $(this).attr('relay-id');
 
                 //Ajax to change the XBee's relay
-                var status = $(this).find('.relay-checkbox').is(':checked')? 'on': 'off';
-                console.log(status);
-                $.get('script/action.php?status=' + status + '&relay=' + relayID + '&atmy=' + atmy);
+                //var status = $(this).find('.relay-checkbox').is(':checked')? 'on': 'off';
+                //console.log(status);
+                //$.get('script/action.php?status=' + status + '&relay=' + relayID + '&atmy=' + atmy);
             });
         });
         </script>
@@ -225,7 +227,7 @@
         <script>
         $(function() {
             // Easy pie charts
-            $('.chart').easyPieChart({animate: 1000, barColor: '#006600'});
+            $('.chart').easyPieChart({animate: 3000, barColor: '#006600'});
 
             //boostrap-switch
             $('.button-relay').on('switch-change', function () {
@@ -251,6 +253,10 @@
         </script>
 
         <?php elseif ($page == 'iqrf'): ?>
+        <script type="text/javascript" src="vendors/chartjs/knockout-3.0.0.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/globalize.min.js"></script>
+        <script type="text/javascript" src="vendors/chartjs/dx.chartjs.js"></script>
+
         <script type="text/javascript">
             $(".temperatureGauge").dxCircularGauge({
                 scale: {
@@ -298,10 +304,32 @@
                         }
                     }
                 },
-                value: 24,
-                subvalues: [24]
+                value: 27,
+                subvalues: [27]
             });
-        </script>  
+        </script>
+
+        <script>
+        // Script for keep updating every 300 milisecond
+        $(document).ready(function(){
+            setInterval(function(){getTemperature()}, 300);
+        });
+
+        function getTemperature(){
+            $('.temperatureGauge').each(function(){
+                var theObject = $(this);
+                var nodeAddress = $(this).attr('node');
+
+                $.get("script/temperature.php?node=" + nodeAddress, function(data,status){
+                    var gauge = theObject.dxCircularGauge('instance');
+                    if(data){
+                        gauge.value(data);
+                        gauge.subvalues([data]);
+                    }
+                });
+            });
+        }
+        </script>
         <?php endif; ?>
 
 

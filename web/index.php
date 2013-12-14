@@ -4,8 +4,8 @@ session_start();
 if(isset($_POST['username']) && $_POST['username'] != '') {
   include('script/db.php');
 
-  $username = mysql_escape_string($_POST['username']);
-  $password = md5(mysql_escape_string($_POST['password']));
+  $username = mysql_real_escape_string($_POST['username']);
+  $password = md5(mysql_real_escape_string($_POST['password']));
   $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
   $result = mysql_query($query);
 
@@ -47,7 +47,8 @@ if(isset($_POST['username']) && $_POST['username'] != '') {
       <form class="form-signin" action="index.php" method="post">
         <h2 class="form-signin-heading">Please Log in</h2>
         <?php echo $error;?>
-        <input type="text" name="username" class="input-block-level" placeholder="Username">
+        <input type="text" name="username"
+          class="input-block-level" placeholder="Username" value="<?php if(isset($username)) echo $username; ?>">
         <input type="password" name="password" class="input-block-level" placeholder="Password">
         <!--<label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me

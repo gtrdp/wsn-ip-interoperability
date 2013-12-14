@@ -6,7 +6,7 @@ $device = $_GET['device'];
 $address = $_GET['address'];
 
 // Validate input
-if($address > 100 || $address < 0)
+if($address > 20 || $address < 0)
 	echo 'ERROR!
 Address is out of range. Please enter a number between 0 to 100.';
 elseif($address == 0 || $address == 1)
@@ -42,14 +42,15 @@ else {
 			// Turn off relay 1
 			exec('python /root/xbee.py off '. $address .' 1');
 			// Check status
-			if(exec('python /root/xbee.py status '. $address .'1') == 'L') {
+			$status = exec('python /root/xbee.py status '. $address .' 1');
+			if(substr($status, 0, 1) == 'L') {
 				if(mysql_query("INSERT INTO xbee_device (atmy) VALUES ($address)"))
 					echo 'The process is successful!';
 				else
 					echo mysql_error();
 			} else 
 				echo 'ERROR!
-Your device is not reponding, failed to add new device';
+Your device is not reponding, failed to add new device. ' . $status;
 		}
 	}
 }
