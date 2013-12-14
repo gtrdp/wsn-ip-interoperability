@@ -13,7 +13,7 @@ import serial,sys
 
 #check the required arguments
 if len(sys.argv) < 2:
-	print 'This program needs 2 arguments'
+	print 'This program needs 1 arguments'
 
 else:
 	# Get the commands
@@ -22,10 +22,10 @@ else:
 	# xbee is a variable that refers to serial port:
 	# 	path: 		/dev/ttyUSB0
 	# 	baud rate: 	4800
-	xbee = serial.Serial('/dev/ttyUSB0', 4800)
+	xbee = serial.Serial('/dev/ttyUSB1', 4800, timeout=3)
 
 	# write char 'g' and get the returned temperature
-	xbee.write(commands)
+	xbee.write(command)
 	print xbee.read(10)
 
 	# close port

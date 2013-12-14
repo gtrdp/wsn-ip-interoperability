@@ -11,56 +11,45 @@
 # 		check specified <relay_number> status on <atmy> device
 # 		eg. status 2 1
 
-import serial,sys
+import serial,sys,time
 
 #check the required arguments
 if len(sys.argv) < 4:
 	print 'This program needs 3 arguments'
 
 else:
-	xbee = serial.Serial('/dev/ttyUSB1', 9600, timeout=1)
+	xbee = serial.Serial('/dev/ttyUSB0', 9600, timeout=3)
 	# Get the arguments
-	atmy = sys.argv[1]
-	mode = sys.argv[2]
+	mode = sys.argv[1]
+	atmy = sys.argv[2]
 	relay= sys.argv[3]
 
-	# Start ATCOMMAND with +++
-	xbee.write('+++')
-	if xbee.read(10) == 'OK'
-		# If OK, change the address using ATDL
-		xbee.write('ATDL ' + atmy + '\r\n')
-		if xbee.read(10) == 'OK'
-			# if OK, write the setting to the memory using ATWR
-			xbee.write('ATWR' + '\r\n')
-			if xbee.read(10) == 'OK'
-				# If OK, start the communication to the desired device
-				if mode == "on" :
-					if relay == "1":
-						xbee.write("q")
-					elif relay == "2":
-						xbee.write("e")
+	# AT COMMAND for changing the destination address
+	xbee.write('+++')					# Start ATCOMMAND with +++
+	time.sleep(2)						# Wait to enter AT MODE
+	xbee.write('ATDL ' + atmy + '\r\n')	# Change ATDL
+	xbee.write('ATCN\r\n')				# Quit ATCOMMAND
 
-				elif mode == "off" :
-					if relay == "1":
-						xbee.write("w")
-					elif relay == "2":
-						xbee.write("r")
+	if mode == "on" :
+		if relay == "1":
+			xbee.write("q")
+		elif relay == "2":
+			xbee.write("e")
 
-				elif mode == "status" : 
-					if relay == "1":
-						xbee.write("a")
-						print xbee.read(10)
-					elif relay == "2":
-						xbee.write("s")
-						print xbee.read(10)
+	elif mode == "off" :
+		if relay == "1":
+			xbee.write("w")
+		elif relay == "2":
+			xbee.write("r")
 
-				else:
-					print 'Your command is not recognized.'
-			else:
-				print 'Communication error.'
-		else:
-			print 'Communication error.'
+	elif mode == "status" : 
+		if relay == "1":
+			xbee.write("a")
+			print xbee.read(10)
+		elif relay == "2":
+			xbee.write("s")
+			print xbee.read(10)
 	else:
-		print 'Communication error.'
+		print 'You command is not recognized'
 
 	xbee.close()             # close port
