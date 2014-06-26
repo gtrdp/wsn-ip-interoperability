@@ -6,6 +6,10 @@ $page = $_GET['list'];
 include('pages/header.php');
 include('script/db.php');
 
+// the ribbon on the right
+$ribbon['name'] = ($page == 'user')? 'Add New User':'Add New Profile';
+$ribbon['href'] = ($page == 'user')? 'new-user.php':'new-profile.php';
+
 if(isset($_POST['delete']) && $_POST['delete'] != '') {
     $id = $_POST['delete'];
 
@@ -89,7 +93,8 @@ if($page == 'user') {
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">List of <?php echo strtoupper($page); ?></div>
+                                <div class="muted pull-left">List of <?php echo ucwords($page); ?></div>
+                                <div class="pull-right"><a href="<?php echo $ribbon['href']; ?>"> <span class="badge badge-success"><?php echo $ribbon['name']; ?></span></a></div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">

@@ -28,11 +28,11 @@
 ## To-do
 * Buat dokumentasi tentang bagaimana implementasi aplikasi ini dari nol.
 * **Buat Skripsi**
-	* SDLC apa yang digunakan?
-	* Saat testing menggunakan sshfs agar mudah dalam testing.
-	* Usecase, sitemap, flowchart.
-	* Konfigurasi router yang digunakan.
-	* Problem and solution, pyserial.
+	* SDLC apa yang digunakan? - OK
+	* Saat testing menggunakan sshfs agar mudah dalam testing. - OK
+	* Usecase, sitemap, flowchart. - OK
+	* Konfigurasi router yang digunakan. - OK
+	* Problem and solution, pyserial, extroot harus direset dulu biar kebaca.
 
 
 ## Aplikasi

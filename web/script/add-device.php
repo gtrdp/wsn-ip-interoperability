@@ -35,6 +35,9 @@ else {
 					echo 'The process is successful!';
 				else
 					echo mysql_error();
+			} else {
+				echo 'ERROR!
+Your device is not reponding, failed to bond new device.';
 			}
 		} elseif($device == 'xbee') {
 			// Turn on relay 1

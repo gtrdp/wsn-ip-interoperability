@@ -2,7 +2,7 @@
 <html class="no-js">
     
     <head>
-        <title>Admin Home Page</title>
+        <title><?php echo (strlen($page) < 5)? strtoupper($page):ucwords($page); ?> | WSN+IP</title>
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
